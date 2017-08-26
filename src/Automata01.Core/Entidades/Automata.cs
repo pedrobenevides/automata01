@@ -6,34 +6,36 @@ namespace Automata01.Core.Entidades
 {
     public sealed class Automata
     {
-        public Automata(IList<char> alphabet, IList<string> grammar, IDictionary<int, Node> nodes)
+        public Automata(IList<char> alphabet, IList<string> grammar, int nodes, IDictionary<int, IDictionary<char, Direction>> universe)
         {
             Alphabet = alphabet;
             Grammar = grammar;
             Nodes = nodes;
+
+            Universe = universe;
         }
 
         public IList<char> Alphabet { get; }
         public IList<string> Grammar { get; }
-        public IDictionary<int, Node> Nodes { get; }
-        public int FinalState => Nodes.Count - 1;
+        public int Nodes { get; }
+        public int FinalState => Nodes - 1;
+        public IDictionary<int, IDictionary<char, Direction>> Universe { get; }
 
         public bool IsValidSequence(IList<char> input, Action<string> printValue)
         {
-            var numberOfNodes = Nodes.Count;
             var currentNode = 0;
 
-            for (var i = 0; i < input.Count; i++)
+            foreach (var currentChar in input)
             {
-                var currentChar = input[i];
-
                 if (!BelongsToAlphabet(currentChar))
                 {
                     printValue($" ERROR: The character ${currentChar} does not belong to the alphabet");
                     return false;
                 }
-                
-                var direction = Nodes[currentNode].Transition(currentChar);
+
+                var direction = Universe[currentNode][currentChar];
+
+                printValue($"Estou no estado Q{currentNode} ao ler {currentChar} vou para a ${direction}");
                 currentNode = NextNode(direction, currentNode);
             }
 
@@ -43,7 +45,7 @@ namespace Automata01.Core.Entidades
         private bool BelongsToAlphabet(char value)
             => Alphabet.Contains(value);
 
-        private int NextNode(Direction direction, int currentNode)
+        private static int NextNode(Direction direction, int currentNode)
         {
             switch (direction)
             {

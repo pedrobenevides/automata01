@@ -36,7 +36,6 @@
   <ItemGroup>
     <Compile Include="Entidades\Automata.cs" />
     <Compile Include="Enums\Direction.cs" />
-    <Compile Include="Entidades\Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
