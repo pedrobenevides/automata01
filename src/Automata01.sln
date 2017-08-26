@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automata01.Core", "Automata01.Core\Automata01.Core.csproj", "{6F47392A-D392-474C-9397-F9EFC9829EEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automata01.Presentation.Cmd", "Automata01.Presentation.Cmd\Automata01.Presentation.Cmd.csproj", "{EB2FDAE3-BA61-4A62-8046-80CA8A209CC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6F47392A-D392-474C-9397-F9EFC9829EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F47392A-D392-474C-9397-F9EFC9829EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F47392A-D392-474C-9397-F9EFC9829EEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB2FDAE3-BA61-4A62-8046-80CA8A209CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB2FDAE3-BA61-4A62-8046-80CA8A209CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB2FDAE3-BA61-4A62-8046-80CA8A209CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB2FDAE3-BA61-4A62-8046-80CA8A209CC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Automata01.Core.Enums;
 
 namespace Automata01.Core.Entidades
 {
@@ -15,72 +16,44 @@ namespace Automata01.Core.Entidades
         public IList<char> Alphabet { get; }
         public IList<string> Grammar { get; }
         public IDictionary<int, Node> Nodes { get; }
+        public int FinalState => Nodes.Count - 1;
 
-        public bool IsValidSequence(IList<string> input)
+        public bool IsValidSequence(IList<char> input, Action<string> printValue)
         {
+            var numberOfNodes = Nodes.Count;
+            var currentNode = 0;
+
             for (var i = 0; i < input.Count; i++)
             {
-                //TODO
+                var currentChar = input[i];
+
+                if (!BelongsToAlphabet(currentChar))
+                {
+                    printValue($" ERROR: The character ${currentChar} does not belong to the alphabet");
+                    return false;
+                }
+                
+                var direction = Nodes[currentNode].Transition(currentChar);
+                currentNode = NextNode(direction, currentNode);
             }
 
-            return true;
-        }
-    }
-
-    public class Node
-    {
-        private readonly Func<string, Direction> _action;
-
-        public Node(string stateValue, Func<string, Direction> action)
-        {
-            _action = action;
-            StateValue = stateValue;
+            return currentNode == FinalState;
         }
 
-        public Direction Direction { get; set; }
-        public string StateValue { get; private set; }
+        private bool BelongsToAlphabet(char value)
+            => Alphabet.Contains(value);
 
-        public Direction Transition(string value) => _action(value);
-    }
-
-    public enum Direction
-    {
-        Left,
-        Right,
-        None
-    }
-
-    public class Main
-    {
-        public void Teste()
+        private int NextNode(Direction direction, int currentNode)
         {
-            var q0 = new Node("q0", s =>
+            switch (direction)
             {
-                if (s == "a")
-                    return Direction.None;
-
-                if (s == "b")
-                    return Direction.Right;
-
-                throw new Exception("Letra não reconhecida pelo alfabeto ou por esse estado.");
-            });
-
-            var q1 = new Node("q1", s =>
-            {
-                if (s == "a")
-                    return Direction.Left;
-
-                if (s == "b")
-                    return Direction.None;
-
-                if (s == "c")
-                    return Direction.Right;
-
-                throw new Exception("Letra não reconhecida pelo alfabeto.");
-            });
-
-            var automata = new Automata(new List<char> { 'a', 'b', 'c' }, new List<string>(), new Dictionary<int, Node> { { 0, q0 }, { 1, q1 } });
-
+                case Direction.Left:
+                    return --currentNode;
+                case Direction.Right:
+                    return ++currentNode;
+                default:
+                    return currentNode;
+            }
         }
     }
 }
