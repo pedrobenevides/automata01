@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automata01.Core", "Automata
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automata01.Presentation.Cmd", "Automata01.Presentation.Cmd\Automata01.Presentation.Cmd.csproj", "{EB2FDAE3-BA61-4A62-8046-80CA8A209CC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automata01.Service.Api", "Automata01.Service.Api\Automata01.Service.Api.csproj", "{324870D8-846F-4A32-BDA0-59665BF4F903}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EB2FDAE3-BA61-4A62-8046-80CA8A209CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB2FDAE3-BA61-4A62-8046-80CA8A209CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB2FDAE3-BA61-4A62-8046-80CA8A209CC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{324870D8-846F-4A32-BDA0-59665BF4F903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{324870D8-846F-4A32-BDA0-59665BF4F903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{324870D8-846F-4A32-BDA0-59665BF4F903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{324870D8-846F-4A32-BDA0-59665BF4F903}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

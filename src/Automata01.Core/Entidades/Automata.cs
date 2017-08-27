@@ -7,16 +7,16 @@ namespace Automata01.Core.Entidades
 {
     public sealed class Automata
     {
-        public Automata(IReadOnlyCollection<char> alphabet, IReadOnlyCollection<char> grammar, int nodes, IReadOnlyCollection<Node> universe)
+        public Automata(IReadOnlyCollection<char> alphabet, IReadOnlyCollection<char> grammar, IReadOnlyCollection<Node> universe)
         {
             Alphabet = alphabet;
             Grammar = grammar;
-            Nodes = nodes;
 
             if (!IsValidUniverse(universe.ToList()))
                 throw new Exception("This is not a valid universe");
 
             Universe = universe;
+            Nodes = Universe.Count;
         }
 
         public IReadOnlyCollection<char> Alphabet { get; }
