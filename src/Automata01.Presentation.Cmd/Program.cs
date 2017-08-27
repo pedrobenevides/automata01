@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Automata01.Core.Entidades;
 using Automata01.Core.Enums;
 using static System.Console;
@@ -10,15 +9,16 @@ namespace Automata01.Presentation.Cmd
     {
         static void Main(string[] args)
         {
-            var automata = new Automata(new List<char> { 'a', 'b', 'c' }, new List<string>(), 4, new Dictionary<int, IDictionary<char, Direction>>
+            var lista = new List<string>();
+            var automata = new Automata(new List<char> { 'a', 'b', 'c' }.AsReadOnly(), new List<char> { 'a', 'a', 'a', 'b', 'c', 'b' }.AsReadOnly(), 4, new List<Node>
             {
-                {0, new Dictionary<char, Direction>{{ 'a', Direction.None }, { 'b', Direction.Right} } },
-                {1, new Dictionary<char, Direction>{{ 'a', Direction.Left }, { 'b', Direction.None}, { 'c', Direction.Right } } },
-                {2, new Dictionary<char, Direction>{{ 'a', Direction.None }, { 'b', Direction.Right} } },
-                {3, new Dictionary<char, Direction>{{ ' ', Direction.None }}}
-            });
+                new Node(0, new Dictionary<char, Direction>{{ 'a', Direction.None }, { 'b', Direction.Right} }),
+                new Node(1, new Dictionary<char, Direction>{{ 'a', Direction.Left }, { 'b', Direction.None}, { 'c', Direction.Right } } ),
+                new Node(2, new Dictionary<char, Direction>{{ 'a', Direction.None }, { 'b', Direction.Right} }),
+                new Node(3, new Dictionary<char, Direction>{{ ' ', Direction.None }})
+            }.AsReadOnly());
 
-            var isValid = automata.IsValidSequence(new List<char> { 'a', 'a', 'a', 'b', 'c', 'b' }, WriteLine);
+            var isValid = automata.IsValidSequence(WriteLine);
 
             if (isValid)
                 WriteLine("ESTADO FINAL!!!!");
