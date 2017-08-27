@@ -1,21 +1,17 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Automata01.Core.Enums;
 
 namespace Automata01.Core.Entidades
 {
-    public class Node
+    public sealed class Node
     {
-        private readonly Func<char, Direction> _func;
-
-        public Node(string stateValue, Func<char, Direction> func)
+        public Node(int state, IDictionary<char, Direction> possibities)
         {
-            _func = func;
-            StateValue = stateValue;
+            State = state;
+            Possibities = possibities;
         }
 
-        public Direction Direction { get; set; }
-        public string StateValue { get; private set; }
-
-        public Direction Transition(char value) => _func(value);
+        public IDictionary<char, Direction> Possibities { get; }
+        public int State { get; }
     }
 }
