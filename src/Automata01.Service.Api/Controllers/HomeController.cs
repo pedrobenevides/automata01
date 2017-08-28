@@ -22,9 +22,11 @@ namespace Automata01.Service.Api.Controllers
         [HttpGet]
         public IHttpActionResult Get(InputVM vm)
         {
+            var result = new List<string>();
             _automata = new Automata(vm.Alphabet.Split(',').SelectMany(x => x.ToCharArray()).ToList(), vm.Grammar.Split('|').SelectMany(x => x.ToCharArray()).ToList(),
                 _automataService.MapperToNodes(vm.Coordinates));
-            return Ok();
+            _automata.IsValidSequence(s => result.Add(s));
+            return Ok(result);
         }
     }
 
@@ -37,23 +39,22 @@ namespace Automata01.Service.Api.Controllers
 
             var values = input.Replace("\n", "").Split('#');
             var result = new List<Node>();
-            var dict = new Dictionary<char, Direction>();
-
-            foreach (var v in values)
+            
+            foreach (var v in values.Where(x => x != ""))
             {
-                var state = Convert.ToInt16(v[0]);
+                var state = Convert.ToInt16(v[0].ToString());
                 var lines = v.Substring(2).Split(';');
+                var dict = new Dictionary<char, Direction>();
 
                 foreach (var line in lines)
                 {
-                    var nodeChar = line[0];
-                    var nodeDirection = line.Substring(1).ToDirection();
+                    var nodeChar = line.Trim()[0];
+                    var nodeDirection = line.Replace(',',' ').Trim().Substring(1).ToDirection();
 
                     dict.Add(nodeChar, nodeDirection);
                 }
 
                 result.Add(new Node(state, dict));
-                dict.Clear();
             }
 
             return result;

@@ -6,7 +6,7 @@ namespace Automata01.Core.Shared
     {
         public static Direction ToDirection(this string input)
         {
-            switch (input)
+            switch (input.Trim())
             {
                 case "->":
                     return Direction.Right;

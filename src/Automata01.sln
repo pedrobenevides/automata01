@@ -9,6 +9,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automata01.Presentation.Cmd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automata01.Service.Api", "Automata01.Service.Api\Automata01.Service.Api.csproj", "{324870D8-846F-4A32-BDA0-59665BF4F903}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Core", "01 - Core", "{6AC29B3E-0FE8-4BF5-B586-13A8E4F8DBD9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Services", "02 - Services", "{A6905358-276D-4C89-9707-0ED83AECE9A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Presentation", "03 - Presentation", "{C658AB72-8350-4DD4-8EE0-88D850A5F6DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - Tests", "00 - Tests", "{C0ED086E-055E-46C0-A796-108AA6AD3060}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automata01.Tests", "Automata01.Tests\Automata01.Tests.csproj", "{500BCEAA-0B01-4D0C-B520-57C9B54E8FC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +37,19 @@ Global
 		{324870D8-846F-4A32-BDA0-59665BF4F903}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{324870D8-846F-4A32-BDA0-59665BF4F903}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{324870D8-846F-4A32-BDA0-59665BF4F903}.Release|Any CPU.Build.0 = Release|Any CPU
+		{500BCEAA-0B01-4D0C-B520-57C9B54E8FC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{500BCEAA-0B01-4D0C-B520-57C9B54E8FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{500BCEAA-0B01-4D0C-B520-57C9B54E8FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{500BCEAA-0B01-4D0C-B520-57C9B54E8FC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6F47392A-D392-474C-9397-F9EFC9829EEC} = {6AC29B3E-0FE8-4BF5-B586-13A8E4F8DBD9}
+		{EB2FDAE3-BA61-4A62-8046-80CA8A209CC4} = {C658AB72-8350-4DD4-8EE0-88D850A5F6DF}
+		{324870D8-846F-4A32-BDA0-59665BF4F903} = {A6905358-276D-4C89-9707-0ED83AECE9A7}
+		{500BCEAA-0B01-4D0C-B520-57C9B54E8FC2} = {C0ED086E-055E-46C0-A796-108AA6AD3060}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F06F8369-D9E1-4C68-84AD-C2B1AF30CF62}
