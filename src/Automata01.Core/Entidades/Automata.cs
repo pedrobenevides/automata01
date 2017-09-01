@@ -16,13 +16,11 @@ namespace Automata01.Core.Entidades
                 throw new Exception("This is not a valid universe");
 
             Universe = universe;
-            Nodes = Universe.Count;
         }
 
         public IReadOnlyCollection<char> Alphabet { get; }
         public IReadOnlyCollection<char> Grammar { get; }
-        public int Nodes { get; }
-        public int FinalState => Nodes - 1;
+        public int FinalState => Universe.Select(u => u.State).Max();
         public IReadOnlyCollection<Node> Universe { get; }
 
         public bool IsValidSequence(Action<string> printValue)
@@ -34,7 +32,7 @@ namespace Automata01.Core.Entidades
                 if (!BelongsToAlphabet(currentChar))
                 {
                     printValue($" ERROR: The character ${currentChar} does not belong to the alphabet");
-                    return false;
+                    break;
                 }
 
                 var direction = GetDirection(currentNode, currentChar);
@@ -43,10 +41,16 @@ namespace Automata01.Core.Entidades
                 currentNode = NextNode(direction, currentNode);
             }
 
-            return currentNode == FinalState;
+            var isValid = currentNode == FinalState;
+
+            printValue(isValid
+                ? $"Q{currentNode} é o estado final !!"
+                : $"Autômato inválido Q{currentNode} não é estado final");
+
+            return isValid;
         }
 
-        private Direction GetDirection(int currentNode, char currentChar) 
+        private Direction GetDirection(int currentNode, char currentChar)
             => Universe.First(u => u.State == currentNode).Possibities.First(p => p.Key == currentChar).Value;
 
         private bool BelongsToAlphabet(char value)

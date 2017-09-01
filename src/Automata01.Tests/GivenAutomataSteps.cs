@@ -20,16 +20,13 @@ namespace Automata01.Tests
             _scenarioContext = scenarioContext;
             _sut = new HomeController();
         }
-
+        //0 a, 0; b, 2; 
         [Given(@"some input for automata")]
-        public void GivenSomeInputForAutomata()
-        {
-            _input = "0 a,none; b,->#\n" +
-                "1 a,<-; b,none;c->#\n" +
-                "2 a,none;b,->#\n" +
-                "3  , nonde#\n";
-        }
-        
+        public void GivenSomeInputForAutomata() => _input = "0 a,none; b,->#\n" +
+                                                            "1 a,<-; b,none;c,->#\n" +
+                                                            "2 a,none;b,->#\n" +
+                                                            "3  , none, *#\n";
+
         [Given(@"i send it via web")]
         public void GivenISendItViaWeb()
         {
@@ -42,17 +39,17 @@ namespace Automata01.Tests
 
             _scenarioContext.Set(_sut.Get(vm));
         }
-        
+
         [When(@"the automata readit")]
         public void WhenTheAutomataReadit()
         {
         }
-        
+
         [Then(@"return ok with the steps")]
         public void ThenReturnOkWithTheSteps()
         {
             var result = ((OkNegotiatedContentResult<List<string>>)_scenarioContext.Get<IHttpActionResult>()).Content;
-            Assert.AreEqual(6, result.Count);
+            Assert.AreEqual(7, result.Count);
         }
     }
 }

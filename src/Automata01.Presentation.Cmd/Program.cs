@@ -15,7 +15,7 @@ namespace Automata01.Presentation.Cmd
                 new Node(0, new Dictionary<char, Direction>{{ 'a', Direction.None }, { 'b', Direction.Right} }),
                 new Node(1, new Dictionary<char, Direction>{{ 'a', Direction.Left }, { 'b', Direction.None}, { 'c', Direction.Right } } ),
                 new Node(2, new Dictionary<char, Direction>{{ 'a', Direction.None }, { 'b', Direction.Right} }),
-                new Node(3, new Dictionary<char, Direction>{{ ' ', Direction.None }})
+                new Node(3, new Dictionary<char, Direction>{{ ' ', Direction.None }}, true)
             }.AsReadOnly());
 
             var isValid = automata.IsValidSequence(WriteLine);
