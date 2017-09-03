@@ -1,4 +1,5 @@
-﻿using Automata01.Core.Enums;
+﻿using System;
+using Automata01.Core.Enums;
 
 namespace Automata01.Core.Shared
 {
@@ -16,5 +17,12 @@ namespace Automata01.Core.Shared
                     return Direction.None;
             }
         }
+
+        public static int ToNextMove(this string input) => 
+            input.IsFinal() ? Convert.ToInt16(input.Replace(',', ' ').Trim().Substring(0, 1))
+            : Convert.ToInt16(input.Replace(',', ' ').Trim().Substring(1));
+
+        public static bool IsFinal(this string input)
+            => input.EndsWith("*");
     }
 }

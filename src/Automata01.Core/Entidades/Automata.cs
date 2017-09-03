@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Automata01.Core.Enums;
 
 namespace Automata01.Core.Entidades
 {
@@ -22,10 +21,10 @@ namespace Automata01.Core.Entidades
         public IReadOnlyCollection<char> Grammar { get; }
         public int FinalState => Universe.Select(u => u.State).Max();
         public IReadOnlyCollection<Node> Universe { get; }
-
-        public bool IsValidSequence(Action<string> printValue)
+        
+        public bool IsValidSequence2(Action<string> printValue)
         {
-            var currentNode = 0;
+            var currentNode = Universe.OrderBy(u => u.State).First();
 
             foreach (var currentChar in Grammar)
             {
@@ -35,52 +34,35 @@ namespace Automata01.Core.Entidades
                     break;
                 }
 
-                var direction = GetDirection(currentNode, currentChar);
+                var nextNode = GetDirection2(currentNode, currentChar);
+                printValue($"Estou no estado Q{currentNode.State} ao ler [{currentChar}] {LogNext(nextNode.State, currentNode.State)}");
 
-                printValue($"Estou no estado Q{currentNode} ao ler [{currentChar}] {LogNext(direction, currentNode)}");
-                currentNode = NextNode(direction, currentNode);
+                currentNode = nextNode;
             }
 
-            var isValid = currentNode == FinalState;
+            var isValid = currentNode.IsFinalState;
 
             printValue(isValid
-                ? $"Q{currentNode} é o estado final !!"
-                : $"Autômato inválido Q{currentNode} não é estado final");
+                ? $"Q{currentNode.State} é o estado final !!"
+                : $"Autômato inválido Q{currentNode.State} não é estado final");
 
             return isValid;
         }
 
-        private Direction GetDirection(int currentNode, char currentChar)
-            => Universe.First(u => u.State == currentNode).Possibities.First(p => p.Key == currentChar).Value;
+        private Node GetDirection2(Node currentNode, char currentChar)
+        {
+            var nextNodeNumber = Universe.First(u => u.State == currentNode.State).Possibities.First(p => p.Key == currentChar).Value;
+            return Universe.First(u => u.State == nextNodeNumber);
+        }
 
         private bool BelongsToAlphabet(char value)
             => Alphabet.Contains(value);
-
-        private static int NextNode(Direction direction, int currentNode)
-        {
-            switch (direction)
-            {
-                case Direction.Left:
-                    return --currentNode;
-                case Direction.Right:
-                    return ++currentNode;
-                default:
-                    return currentNode;
-            }
-        }
-
-        private static string LogNext(Direction direction, int currentNode)
-        {
-            switch (direction)
-            {
-                case Direction.Left:
-                    return $"volta para Q{currentNode - 1}";
-                case Direction.Right:
-                    return $"vai para Q{currentNode + 1}";
-                default:
-                    return $"continua em Q{currentNode}";
-            }
-        }
+        
+        private static string LogNext(int nextNode, int currentNode) => nextNode > currentNode
+            ? $"vai para Q{nextNode}"
+            : nextNode < currentNode
+                ? $"volta para Q{nextNode}"
+                : $"permanece em Q{currentNode}";
 
         private static bool IsValidUniverse(ICollection<Node> universe)
         {

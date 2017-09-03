@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Resultado</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-slides pager>
+
+    <ion-slide *ngFor="let item of model; let i=index">
+      <ion-card>
+        <img src="../../assets/compsc.png" />
+        <ion-card-content>
+          <ion-card-title style="font-size: 20pt">
+            Passo: {{i + 1}}
+          </ion-card-title>
+          <p>
+            {{item}}
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide *ngIf="isValid">
+      <ion-card>
+        Autômato válido
+        <ion-card-content>
+          <ion-icon name="md-checkmark" style="font-size: 125pt; color:#7aca13"></ion-icon>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide *ngIf="!isValid">
+      <ion-card>
+        Autômato inválido
+        <ion-card-content>
+          <ion-icon name="md-close" style="font-size: 125pt; color:#f53d3d"></ion-icon>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+  </ion-slides>
+
+
+</ion-content>

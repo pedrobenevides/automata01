@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Microsoft.Owin.Cors;
 using Owin;
 
 namespace Automata01.Service.Api.App_Start
@@ -7,8 +8,11 @@ namespace Automata01.Service.Api.App_Start
     {
         public static void Configure(IAppBuilder app)
         {
+
+            app.UseCors(CorsOptions.AllowAll);
             var config = new HttpConfiguration();
 
+            
             // Web API routes
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(

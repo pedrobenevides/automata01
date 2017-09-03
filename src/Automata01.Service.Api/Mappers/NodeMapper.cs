@@ -19,14 +19,14 @@ namespace Automata01.Service.Api.Mappers
             {
                 var state = Convert.ToInt16(v[0].ToString());
                 var lines = v.Substring(2).Split(';');
-                var dict = new Dictionary<char, Direction>();
+                var dict = new Dictionary<char, int>();
                 var isFinalState = false;
 
                 foreach (var line in lines)
                 {
                     var nodeChar = line.Trim()[0];
 
-                    var nodeDirection = line.Replace(',', ' ').Trim().Substring(1).ToDirection();
+                    var nodeDirection = line.ToNextMove();
                     dict.Add(nodeChar, nodeDirection);
 
                     isFinalState = line.EndsWith("*");

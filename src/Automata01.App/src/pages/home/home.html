@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Automatos 01</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Trabalho de Automatos - 01</h2>
+  <p>
+    Informe os dados do automato a ser realizado.
+  </p>
+  <p>
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Alfabeto</ion-label>
+        <ion-input type="text" [(ngModel)]="viewModel.alphabet"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Gramática</ion-label>
+        <ion-input type="text" [(ngModel)]="viewModel.grammar"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Steps</ion-label>
+        <ion-textarea class="cancelamento-input" [(ngModel)]="viewModel.coordinates" >
+        </ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <button ion-button (click)="enviar()">Truco</button>
+      </ion-item>
+
+    </ion-list>
+  </p>
+</ion-content>

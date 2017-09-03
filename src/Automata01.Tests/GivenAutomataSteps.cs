@@ -20,12 +20,12 @@ namespace Automata01.Tests
             _scenarioContext = scenarioContext;
             _sut = new HomeController();
         }
-        //0 a, 0; b, 2; 
+        //0 a, 0; b, 2; c, 3;
         [Given(@"some input for automata")]
-        public void GivenSomeInputForAutomata() => _input = "0 a,none; b,->#\n" +
-                                                            "1 a,<-; b,none;c,->#\n" +
-                                                            "2 a,none;b,->#\n" +
-                                                            "3  , none, *#\n";
+        public void GivenSomeInputForAutomata() => _input = "0 a,0; b,1#\n" +
+                                                            "1 a,0; b,1;c,2#\n" +
+                                                            "2 a,2;b,3#\n" +
+                                                            "3  , 3, *#\n";
 
         [Given(@"i send it via web")]
         public void GivenISendItViaWeb()
