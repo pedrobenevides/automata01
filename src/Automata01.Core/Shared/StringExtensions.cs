@@ -19,7 +19,7 @@ namespace Automata01.Core.Shared
         }
 
         public static int ToNextMove(this string input) => 
-            input.IsFinal() ? Convert.ToInt16(input.Replace(',', ' ').Trim().Substring(0, 1))
+            input.IsFinal() ? Convert.ToInt16(input.Replace(',', ' ').Replace(" ", string.Empty).Substring(1, 1))
             : Convert.ToInt16(input.Replace(',', ' ').Trim().Substring(1));
 
         public static bool IsFinal(this string input)

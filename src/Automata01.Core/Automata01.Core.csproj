@@ -35,7 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Automata.cs" />
-    <Compile Include="Entidades\Entidade.cs" />
+    <Compile Include="Entidades\FiniteDeterministic.cs" />
     <Compile Include="Entidades\Node.cs" />
     <Compile Include="Enums\Direction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

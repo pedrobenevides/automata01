@@ -10,7 +10,7 @@ namespace Automata01.Service.Api.Controllers
     [RoutePrefix("api")]
     public sealed class HomeController : ApiController
     {
-        private Automata _automata;
+        private FiniteDeterministic _finiteDeterministic;
         private readonly NodeMapper _nodeMapper;
 
         public HomeController()
@@ -22,9 +22,9 @@ namespace Automata01.Service.Api.Controllers
         public IHttpActionResult Get(InputVM vm)
         {
             var result = new List<string>();
-            _automata = new Automata(vm.Alphabet.Split(',').SelectMany(x => x.ToCharArray()).ToList(), vm.Grammar.Split('|').SelectMany(x => x.ToCharArray()).ToList(),
+            _finiteDeterministic = new FiniteDeterministic(vm.Alphabet.Split(',').SelectMany(x => x.ToCharArray()).ToList(), vm.Grammar.Split('|').SelectMany(x => x.ToCharArray()).ToList(),
                 _nodeMapper.Trasform(vm.Coordinates));
-            _automata.IsValidSequence2(s => result.Add(s));
+            _finiteDeterministic.IsValidSequence(s => result.Add(s));
             return Ok(result);
         }
     }

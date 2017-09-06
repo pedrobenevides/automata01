@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Automata01.Core.Entidades;
-using Automata01.Core.Enums;
 using Automata01.Core.Shared;
 using Automata01.Service.Api.Interfaces;
 
@@ -27,7 +26,13 @@ namespace Automata01.Service.Api.Mappers
                     var nodeChar = line.Trim()[0];
 
                     var nodeDirection = line.ToNextMove();
-                    dict.Add(nodeChar, nodeDirection);
+
+                    if (nodeChar == 'n')
+                        for (var i = 0; i < 10; i++)
+                            dict.Add(i.ToString()[0], nodeDirection);
+                    else
+                        dict.Add(nodeChar, nodeDirection);
+
 
                     isFinalState = line.EndsWith("*");
                 }
